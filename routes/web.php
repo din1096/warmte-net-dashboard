@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CSVImportController; 
 
-Route::get('/WarmtenetDashboard', function () {
+Route::get('/', function () {
     return view('WarmtenetDashboard');
 })->name('WarmtenetDashboard'); 
 
