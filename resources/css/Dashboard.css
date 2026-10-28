@@ -1,0 +1,29 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-shadow: border-box; 
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000000;
+  gap: 30px; 
+}
+
+
+.logo-flex {
+  height: 40px;
+  width: auto;
+}
+
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: sans-serif;
+}
+

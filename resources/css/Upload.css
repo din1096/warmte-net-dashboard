@@ -1,0 +1,127 @@
+/* * {
+  margin: 0;
+  padding: 0;
+  box-shadow: border-box; 
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #000000;
+  gap: 30px; 
+}
+
+
+.logo-flex {
+  height: 40px;
+  width: auto;
+}
+
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: sans-serif;
+} */
+
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.upload-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.msg-success {
+    color: #2e7d32;
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.msg-error {
+    color: #c62828;
+    background: #ffebee;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+#csv_file {
+    display: none;
+}
+
+.csv-upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 30px 20px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    transition: all 0.2s ease;
+    margin-bottom: 20px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.csv-upload-label:hover {
+    background-color: #eff6ff;
+    border-color: #0c0c0c;
+    color: #000000;
+}
+
+.upload-icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 12px;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.csv-upload-label:hover .upload-icon {
+    opacity: 1;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #484a4b;
+}
