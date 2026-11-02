@@ -18,7 +18,7 @@
             <div class="ml-10 flex items-baseline space-x-4">
               <x-nav-link href="/home" :active="request()->is('home')">Home</x-nav-link>
               <x-nav-link href="/contact" :active="request()->is('contact')">Contact</x-nav-link>
-              <x-nav-link href="/contact" :active="request()->is('contact')">Upload</x-nav-link>
+              <x-nav-link href="/Upload" :active="request()->is('Upload')">Upload</x-nav-link>
 
             </div>
           </div>
@@ -57,8 +57,8 @@
     <div class="md:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
         <a href="/home" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white">Home</a>
-        <a href="/about" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">About</a>
         <a href="/contact" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Contact</a>
+        <a href="/Upload" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Upload</a>
         <a href="/login" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Login</a>
         <a href="/register" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Register</a>
       </div>

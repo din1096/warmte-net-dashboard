@@ -10,7 +10,7 @@ Route::get('/', function () {
 
 Route::get('/Upload', function () {
     return view('Upload');
-});
+})->name('upload');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
