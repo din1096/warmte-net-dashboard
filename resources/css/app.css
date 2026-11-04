@@ -975,43 +975,6 @@
     font-weight: 650;
 }
 
-.map-zoom {
-    position: absolute;
-    z-index: 2;
-    right: 18px;
-    bottom: 18px;
-    display: flex;
-    width: 34px;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
-    border: 1px solid rgba(228, 234, 228, .95);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, .96);
-    box-shadow: 0 3px 10px rgba(35, 54, 43, .08);
-}
-
-.map-zoom button {
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: transparent;
-    color: #68776d;
-    cursor: pointer;
-    font-size: 19px;
-    line-height: 1;
-}
-
-.map-zoom button:hover {
-    background: #f1f5f2;
-    color: #367c5b;
-}
-
-.map-zoom > span {
-    width: 20px;
-    border-top: 1px solid #e8ede9;
-}
-
 .map-attribution {
     position: absolute;
     right: 12px;
@@ -1312,11 +1275,6 @@
     .map-detail {
         right: 11px;
         bottom: 19px;
-    }
-
-    .map-zoom {
-        right: 11px;
-        bottom: 111px;
     }
 
     .map-footer {

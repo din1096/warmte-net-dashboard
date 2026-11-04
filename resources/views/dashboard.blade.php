@@ -7,7 +7,7 @@
     <title>Energie dashboard · {{ config('app.name', 'Warmtenet') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="energy-dashboard" x-data="{ activeLayer: 'warmte', zoom: 1, selectedPoint: 'centrale' }">
+<body class="energy-dashboard" x-data="{ activeLayer: 'warmte', selectedPoint: 'centrale' }">
     <div class="dashboard-shell">
         <header class="topbar">
             <a class="brand" href="{{ route('dashboard') }}" aria-label="Warmtenet dashboard">
@@ -207,11 +207,6 @@
                             <span x-show="selectedPoint !== 'centrale'" class="detail-reading">Aansluiting <b>Actief</b></span>
                         </div>
 
-                        <div class="map-zoom">
-                            <button type="button" aria-label="Inzoomen" title="Inzoomen" @click="zoomIn">+</button>
-                            <span></span>
-                            <button type="button" aria-label="Uitzoomen" title="Uitzoomen" @click="zoomOut">−</button>
-                        </div>
                         <div class="map-attribution">Schematische netwerkkaart · voorbeeldweergave</div>
                     </div>
 
