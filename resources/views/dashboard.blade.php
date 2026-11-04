@@ -120,8 +120,9 @@
                 </aside>
 
                 <section class="map-card" aria-label="Kaart van het energienetwerk">
-                    <div class="map-canvas">
-                        <svg class="map-art" :class="{ 'layer-pipes': activeLayer === 'leidingen', 'layer-addresses': activeLayer === 'aansluitingen' }" :style="{ transform: 'scale(' + zoom + ')' }" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Schematische kaart met straten, water en warmteleidingen">
+                    <div class="map-canvas" x-data="energyMap">
+                        <div class="map-viewport" x-ref="map" role="application" aria-label="Interactieve kaart van Leerparkpromenade in Dordrecht"></div>
+                        <svg class="map-art mock-map" :class="{ 'layer-pipes': activeLayer === 'leidingen', 'layer-addresses': activeLayer === 'aansluitingen' }" :style="{ transform: 'scale(' + zoom + ')' }" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                             <rect width="1200" height="800" fill="#edf1e9"/>
                             <path d="M-60 128 115 42l84 84-58 100L5 260ZM284 36l120-42 94 98-57 105-124-33ZM794-21l140 42-16 114-116 32-76-91ZM1007 208l152-34 91 96-45 117-179 20-67-98ZM-30 585l163-42 90 81-34 142-176 39ZM920 601l136-74 159 84-22 142-188 55-115-92Z" fill="#dfe9d9"/>
                             <path d="M337 505c89-60 157-31 228-66s129-78 235-52 155 79 253 36 153-25 225-78" fill="none" stroke="#c7e4e6" stroke-width="72" stroke-linecap="round"/>
@@ -175,9 +176,9 @@
                                 <span class="map-pin-icon" aria-hidden="true">
                                     <svg viewBox="0 0 20 20" fill="none"><path d="M16 8.3c0 4.2-6 9-6 9s-6-4.8-6-9a6 6 0 1 1 12 0Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
                                 </span>
-                                <span><strong>Warmtenet</strong><small>Stadswijk · netwerkkaart</small></span>
+                                <span><strong>Leerpark</strong><small>Dordrecht · netwerkkaart</small></span>
                             </div>
-                            <span class="map-live"><span></span> DEMO</span>
+                            <span class="map-live"><span></span> OPENSTREETMAP</span>
                         </div>
 
                         <div class="map-controls">
@@ -217,19 +218,15 @@
                         </div>
 
                         <div class="map-zoom">
-                            <button type="button" aria-label="Inzoomen" @click="zoom = Math.min(zoom + 0.1, 1.4)">+</button>
+                            <button type="button" aria-label="Inzoomen" title="Inzoomen" @click="zoomIn">+</button>
                             <span></span>
-                            <button type="button" aria-label="Uitzoomen" @click="zoom = Math.max(zoom - 0.1, 0.8)">−</button>
+                            <button type="button" aria-label="Uitzoomen" title="Uitzoomen" @click="zoomOut">−</button>
                         </div>
                         <div class="map-attribution">Schematische netwerkkaart · voorbeeldweergave</div>
                     </div>
 
                     <div class="map-footer">
-                        <div class="map-legend">
-                            <span><i class="legend-line"></i> Warmteleiding</span>
-                            <span><i class="legend-source"></i> Warmtebron</span>
-                            <span><i class="legend-home"></i> Aansluiting</span>
-                        </div>
+                        <div class="map-source">Kaartdata: OpenStreetMap-bijdragers</div>
                         <div class="map-footer-right"><span class="status-dot"></span> Netwerkstatus <span class="footer-divider"></span> <time>{{ now()->locale('nl')->translatedFormat('H:i · l j F Y') }}</time></div>
                     </div>
                 </section>

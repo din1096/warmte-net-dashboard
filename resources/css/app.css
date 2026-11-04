@@ -639,6 +639,23 @@
     transition: transform .25s ease;
 }
 
+.map-viewport.leaflet-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: #edf1e9;
+    font: inherit;
+}
+
+.mock-map,
+.map-controls,
+.map-marker,
+.map-detail,
+.map-attribution {
+    display: none !important;
+}
+
 .map-art.layer-pipes .energy-lines {
     stroke-width: 10px;
     filter: drop-shadow(0 1px 2px rgba(232, 137, 62, .35));
@@ -962,7 +979,7 @@
     position: absolute;
     z-index: 2;
     right: 18px;
-    bottom: 113px;
+    bottom: 18px;
     display: flex;
     width: 34px;
     flex-direction: column;
@@ -1024,6 +1041,11 @@
 
 .map-legend {
     gap: 17px;
+}
+
+.map-source {
+    color: #7d8981;
+    font-size: 9px;
 }
 
 .map-legend > span {
