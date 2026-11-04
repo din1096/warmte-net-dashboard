@@ -1,6 +1,7 @@
 <?php
 $bars = [10,20,40,10,15,5,5,5,5,5,5,5,5,7,8,9,10,11,25,50,40,30,20,10];
 $parts = [45, 30, 15, 10];
+$names = ['Geothermal', 'Residual heat', 'Biomass', 'Gas boiler'];
 $colors = ['#2de390', '#19d3e6', '#ffb020', '#ff6a1a'];
 $acc = 0; $stops = [];
 foreach ($parts as $i => $p) {$stops[] = $colors[$i] . ' ' . $acc . '% ' . ($acc += $p) . '%';}
@@ -25,6 +26,7 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
       .live { color:var(--green); } .dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:var(--green); margin-right:6px; }
       main { display:grid; grid-template-columns:1fr 380px; gap:18px; padding:18px 24px; }
       @media (max-width:900px){ main{ grid-template-columns:1fr } }
+      
       .map { position:relative; min-height:620px; border-radius:6px; overflow:hidden; border:1px solid var(--line);
         background:
           radial-gradient(circle at 42% 52%, rgba(255,220,0,.55), transparent 28%),
@@ -33,6 +35,7 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
           #3a4348; }
       .map h2 { position:absolute; left:30px; top:26px; font-size:17px; }
       .map h2 span { display:block; margin-top:4px; color:#8fe6c0; }
+
       .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; }
       .tabs { position:absolute; left:30px; top:96px; width:156px; padding:6px; }
       .tabs div { padding:11px 14px; border-radius:6px; font-size:12px; font-weight:600; color:#aeb9c4; }
@@ -42,6 +45,7 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
       .src .row:first-of-type { border:0 }
       .src i { width:7px; height:7px; border-radius:50%; }
       .src b { display:block; font-size:13px; } .src small { color:var(--mut); font:10px ui-monospace,monospace; }
+
       .tog { margin-left:auto; width:34px; height:18px; border-radius:9px; background:#1f6b52; position:relative; }
       .tog:after { content:''; position:absolute; right:3px; top:3px; width:12px; height:12px; border-radius:50%; background:var(--green); }
       .lbl { position:absolute; background:rgba(8,12,16,.92); padding:8px 11px; border-left:2px solid; font:600 11px ui-monospace,monospace; }
@@ -54,14 +58,20 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
       .chart { display:flex; align-items:flex-end; gap:4px; height:120px; margin-top:20px; }
       .chart span { flex:1; background:var(--orange); border-radius:1px 1px 0 0; }
       .chart span.f { background:repeating-linear-gradient(45deg,#7a3515 0 2px,#1a0d06 2px 4px); }
+
       .circle { width:140px; height:140px; border-radius:50%; margin:20px auto 0; }
       .leg div { margin-bottom:12px; font-size:12px; color:#aab5c0; } .leg b { display:block; color:#fff; }
+      .dist { margin-top:20px; }
+      .dist .row { display:flex; align-items:center; gap:10px; padding:9px 0; border-top:1px solid var(--line); font-size:13px; }
+      .dist .row:first-child { border-top:0; }
+      .dist i { width:9px; height:9px; border-radius:50%; flex:none; }
+      .dist .pct { margin-left:auto; font:600 13px ui-monospace,Menlo,monospace; }
     </style>
   </head>
   <body>
     <header>
       <div class="logo">TG</div>
-      <div><h1>THERMALGRID</h1><div class="mono">District Operations / Dordrecht</div></div>
+      <div><h1>THERMALGRID</h1><div class="mono">District Operations / Dordrecht Duurzaamheidsfabriek</div></div>
       <div class="sp"></div>
       <div class="mono"><span class="dot"></span>System live <span class="live">MW</span> &nbsp; <?= $now->format('H:i:s') ?> CET</div>
     </header>
@@ -79,8 +89,17 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
           <div class="mono" style="display:flex; justify-content:space-between; margin-top:8px"><span>06:00</span><span>12:00</span><span>18:00</span><span>Now</span></div>
         </div>
         <div class="panel">
-          <div class="mono">Heat sources</div>
+          <div class="mono">Heat distribution</div>
           <div class="circle" style="background:conic-gradient(<?= implode(',', $stops) ?>)"></div>
+          <div class="dist">
+            <?php foreach ($parts as $i => $p): ?>
+              <div class="row">
+                <i style="background:<?= $colors[$i] ?>"></i>
+                <span><?= $names[$i] ?></span>
+                <span class="pct"><?= $p ?>%</span>
+              </div>
+            <?php endforeach; ?>
+          </div>
         </div>
       </aside>
     </main>
