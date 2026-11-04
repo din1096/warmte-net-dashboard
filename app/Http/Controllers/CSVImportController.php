@@ -41,7 +41,7 @@ class CSVImportController extends Controller
             if (!empty($dataToInsert)) {
                 DB::table('people')->insert($dataToInsert);
             }
-            return redirect()->route('WarmtenetDashboard')->with('success', 'CSV imported successfully!');
+            return redirect()->route('dashboard')->with('success', 'CSV imported successfully!');
         }
         return redirect()->back()->with('error', 'Failed to open the CSV file.');
     }
