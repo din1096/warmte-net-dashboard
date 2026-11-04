@@ -11,6 +11,8 @@ Alpine.data('energyMap', () => ({
 
 	init() {
 		this.map = L.map(this.$refs.map, { zoomControl: false }).setView([51.7982559, 4.6795546], 16);
+		this.map.createPane('leerpark');
+		this.map.getPane('leerpark').style.zIndex = '650';
 
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 19,
@@ -18,12 +20,15 @@ Alpine.data('energyMap', () => ({
 		}).addTo(this.map);
 
 		L.circleMarker([51.7982559, 4.6795546], {
+			pane: 'leerpark',
 			radius: 8,
 			color: '#fff',
 			weight: 3,
 			fillColor: '#e9954c',
 			fillOpacity: 1,
-		}).addTo(this.map).bindPopup('<strong>Leerparkpromenade</strong><br>Dordrecht').openPopup();
+		}).addTo(this.map)
+			.bindPopup('<strong>Leerparkpromenade</strong><br>Dordrecht')
+			.openPopup();
 
 		this.$nextTick(() => this.map.invalidateSize());
 	},

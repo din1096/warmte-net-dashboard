@@ -171,16 +171,6 @@
                             </g>
                         </svg>
 
-                        <div class="map-topline">
-                            <div class="map-title">
-                                <span class="map-pin-icon" aria-hidden="true">
-                                    <svg viewBox="0 0 20 20" fill="none"><path d="M16 8.3c0 4.2-6 9-6 9s-6-4.8-6-9a6 6 0 1 1 12 0Z" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
-                                </span>
-                                <span><strong>Leerpark</strong><small>Dordrecht · netwerkkaart</small></span>
-                            </div>
-                            <span class="map-live"><span></span> OPENSTREETMAP</span>
-                        </div>
-
                         <div class="map-controls">
                             <div class="layer-control" role="group" aria-label="Kaartlaag selecteren">
                                 <button type="button" :class="{ 'layer-active': activeLayer === 'warmte' }" @click="activeLayer = 'warmte'">
@@ -226,7 +216,6 @@
                     </div>
 
                     <div class="map-footer">
-                        <div class="map-source">Kaartdata: OpenStreetMap-bijdragers</div>
                         <div class="map-footer-right"><span class="status-dot"></span> Netwerkstatus <span class="footer-divider"></span> <time>{{ now()->locale('nl')->translatedFormat('H:i · l j F Y') }}</time></div>
                     </div>
                 </section>
