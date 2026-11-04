@@ -23,10 +23,10 @@
             
 
             <div class="topbar-divider"></div>
-            <div class="breadcrumb"><span>Overzicht</span><span class="breadcrumb-slash">/</span><strong>Dashboard</strong></div>
+            <div class="breadcrumb"><span>Overzicht</span><span class="breadcrumb-slash">/</span><strong>Dashboard</strong><span class="breadcrumb-slash">/</span><strong>Dashboard</strong></div>
+            <x-nav-link href="/Upload" :active="request()->is('Upload')">Upload</x-nav-link>
 
             <div class="topbar-actions">
-                <x-nav-link href="/Upload" :active="request()->is('Upload')">Upload</x-nav-link>
                 <span class="connection-status"><span></span> Voorbeeldweergave</span>
                 <div class="topbar-divider topbar-divider-small"></div>
                 <div class="user-menu">
@@ -43,12 +43,6 @@
         </header>
 
         <main class="dashboard-main">
-            <div class="page-heading">
-                <div>
-                    <p class="eyebrow"><span class="live-dot"></span> NETWERKOVERZICHT · VOORBEELDDATA</p>
-                    <p class="page-subtitle">Alles wat je moet weten over jouw warmtenet, in één overzicht.</p>
-                </div>
-            </div>
 
             <div class="dashboard-grid">
                 <aside class="info-column" aria-label="Netwerkinformatie">
