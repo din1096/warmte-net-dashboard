@@ -23,9 +23,7 @@
             
 
             <div class="topbar-divider"></div>
-            <div class="breadcrumb"><span>Overzicht</span><span class="breadcrumb-slash">/</span><strong>Dashboard</strong><span class="breadcrumb-slash">/</span><strong>Dashboard</strong></div>
-            <x-nav-link href="/Upload" :active="request()->is('Upload')">Upload</x-nav-link>
-
+            <div class="breadcrumb"><span>Overzicht</span><span class="breadcrumb-slash">/</span><strong>Dashboard</strong><span class="breadcrumb-slash">/</span><strong> <x-nav-link href="/Upload" :active="request()->is('Upload')">Upload</x-nav-link></strong></div>
             <div class="topbar-actions">
                 <span class="connection-status"><span></span> Voorbeeldweergave</span>
                 <div class="topbar-divider topbar-divider-small"></div>
