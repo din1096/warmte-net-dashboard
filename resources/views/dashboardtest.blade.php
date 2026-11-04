@@ -1,7 +1,9 @@
 <?php
 $bars = [10,20,40,10,15,5,5,5,5,5,5,5,5,7,8,9,10,11,25,50,40,30,20,10];
-$nodes = [['DF MAIN-01', 98.2, '#10a100'], ['LEERPARK-02', 76.4, '#fff020'], ['MERWEDE-04', 42.1, '#ff6a1a']];
-$load = [['Industrial', 42, '#ff8000'], ['Residential', 30, '#fff020'], ['Institutional', 28, '#10a100']];
+$parts = [45, 30, 15, 10];
+$colors = ['#2de390', '#19d3e6', '#ffb020', '#ff6a1a'];
+$acc = 0; $stops = [];
+foreach ($parts as $i => $p) {$stops[] = $colors[$i] . ' ' . $acc . '% ' . ($acc += $p) . '%';}
 $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
 ?>
 <!doctype html>
@@ -52,6 +54,7 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
       .chart { display:flex; align-items:flex-end; gap:4px; height:120px; margin-top:20px; }
       .chart span { flex:1; background:var(--orange); border-radius:1px 1px 0 0; }
       .chart span.f { background:repeating-linear-gradient(45deg,#7a3515 0 2px,#1a0d06 2px 4px); }
+      .circle { width:140px; height:140px; border-radius:50%; margin:20px auto 0; }
       .leg div { margin-bottom:12px; font-size:12px; color:#aab5c0; } .leg b { display:block; color:#fff; }
     </style>
   </head>
@@ -74,6 +77,10 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
             <?php foreach ($bars as $i => $h) echo '<span class="' . ($i > 14 ? 'f' : '') . '" style="height:' . $h . '%"></span>'; ?>
           </div>
           <div class="mono" style="display:flex; justify-content:space-between; margin-top:8px"><span>06:00</span><span>12:00</span><span>18:00</span><span>Now</span></div>
+        </div>
+        <div class="panel">
+          <div class="mono">Heat sources</div>
+          <div class="circle" style="background:conic-gradient(<?= implode(',', $stops) ?>)"></div>
         </div>
       </aside>
     </main>
