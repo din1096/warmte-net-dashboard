@@ -1,3 +1,12 @@
+<?php
+$bars = [10,20,40,10,15,5,5,5,5,5,5,5,5,7,8,9,10,11,25,50,40,30,20,10];
+$parts = [45, 30, 15, 10];
+$names = ['Geothermal', 'Residual heat', 'Biomass', 'Gas boiler'];
+$colors = ['#2de390', '#19d3e6', '#ffb020', '#ff6a1a'];
+$acc = 0; $stops = [];
+foreach ($parts as $i => $p) {$stops[] = $colors[$i] . ' ' . $acc . '% ' . ($acc += $p) . '%';}
+$now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
+?>
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -5,7 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Energie dashboard · {{ config('app.name', 'Warmtenet') }}</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite
+    <link rel="stylesheet" href="../css/app.css">
 </head>
 <body class="energy-dashboard" x-data="{ activeLayer: 'warmte', selectedPoint: 'centrale' }">
     <div class="dashboard-shell">
@@ -44,79 +54,26 @@
 
             <div class="dashboard-grid">
                 <aside class="info-column" aria-label="Netwerkinformatie">
-                    <section class="info-card energy-card">
-                        <div class="card-heading">
-                            <div>
-                                <span class="card-kicker">ENERGIE VANDAAG</span>
-                                <h2>Jouw verbruik</h2>
-                            </div>
-                            <span class="icon-badge icon-badge-green" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M13.3 2.8 5.7 13h5.5l-.5 8.2 7.6-10.2h-5.5l.5-8.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
-                            </span>
+                    <div class="panel">
+                        <div class="mono">Generated heat</div>
+                        <div class="chart">
+                            <?php foreach ($bars as $i => $h) echo '<span class="' . ($i > 14 ? 'f' : '') . '" style="height:' . $h . '%"></span>'; ?>
                         </div>
-
-                        <div class="usage-number">42.8 <span>kWh</span></div>
-                        <div class="usage-comparison"><span class="trend-pill">↓ 8,4%</span><span>vs. gisteren</span></div>
-
-                        <div class="chart-wrap" aria-label="Verbruik per uur">
-                            <div class="chart-y-labels"><span>3 kWh</span><span>2 kWh</span><span>1 kWh</span><span>0</span></div>
-                            <div class="chart">
-                                <div class="chart-gridline chart-gridline-one"></div>
-                                <div class="chart-gridline chart-gridline-two"></div>
-                                <div class="chart-gridline chart-gridline-three"></div>
-                                <svg class="usage-chart" viewBox="0 0 320 110" preserveAspectRatio="none" role="img" aria-label="Lijngrafiek van het energieverbruik">
-                                    <defs>
-                                        <linearGradient id="chartFill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#39a77b" stop-opacity=".2"/><stop offset="100%" stop-color="#39a77b" stop-opacity="0"/></linearGradient>
-                                    </defs>
-                                    <path d="M0 83 C18 79 20 48 42 57 S68 82 88 64 S111 35 132 48 S153 75 174 58 S198 30 218 44 S239 60 260 38 S286 45 300 25 S312 17 320 13 L320 110 L0 110Z" fill="url(#chartFill)"/>
-                                    <path d="M0 83 C18 79 20 48 42 57 S68 82 88 64 S111 35 132 48 S153 75 174 58 S198 30 218 44 S239 60 260 38 S286 45 300 25 S312 17 320 13" fill="none" stroke="#279873" stroke-width="2.5" vector-effect="non-scaling-stroke" stroke-linecap="round"/>
-                                    <circle cx="320" cy="13" r="4" fill="#fff" stroke="#279873" stroke-width="2" vector-effect="non-scaling-stroke"/>
-                                </svg>
-                                <div class="chart-x-labels"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>nu</span></div>
-                            </div>
+                        <div class="mono" style="display:flex; justify-content:space-between; margin-top:8px"><span>06:00</span><span>12:00</span><span>18:00</span><span>Now</span></div>
+                    </div>
+                    <div class="panel">
+                        <div class="mono">Heat distribution</div>
+                        <div class="circle" style="background:conic-gradient(<?= implode(',', $stops) ?>)"></div>
+                        <div class="dist">
+                            <?php foreach ($parts as $i => $p): ?>
+                                <div class="row">
+                                    <i style="background:<?= $colors[$i] ?>"></i>
+                                    <span><?= $names[$i] ?></span>
+                                    <span class="pct"><?= $p ?>%</span>
+                                </div>
+                            <?php endforeach; ?>
                         </div>
-
-                        <div class="energy-source">
-                            <span class="source-icon" aria-hidden="true">
-                                <svg viewBox="0 0 20 20" fill="none"><path d="M10 2.5C7.2 6 4 9 4 12.5a6 6 0 0 0 12 0C16 9 12.8 6 10 2.5Z" stroke="currentColor" stroke-width="1.5"/><path d="M7.5 13.5c.3 1.3 1.1 2 2.5 2.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                            </span>
-                            <span><strong>100% duurzame warmte</strong><small>Restwarmte &amp; aardwarmte</small></span>
-                            <span class="source-percent">100%</span>
-                        </div>
-                    </section>
-
-                    <section class="info-card network-card">
-                        <div class="card-heading">
-                            <div>
-                                <span class="card-kicker">JOUW NETWERK</span>
-                                <h2>Alles onder controle</h2>
-                            </div>
-                            <span class="icon-badge icon-badge-blue" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none"><circle cx="6" cy="6" r="2.5" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="7" r="2.5" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="18" r="2.5" stroke="currentColor" stroke-width="1.7"/><path d="m8.2 7 7.4-.2M7.4 8.2l3.3 7.5m5.1-6.5-2.7 6.4" stroke="currentColor" stroke-width="1.7"/></svg>
-                            </span>
-                        </div>
-
-                        <div class="network-summary">
-                            <div class="network-summary-icon" aria-hidden="true">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 3.5 20 7v5.1c0 4.1-2.8 7.4-8 8.9-5.2-1.5-8-4.8-8-8.9V7l8-3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m8.5 12 2.2 2.2 4.8-4.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </div>
-                            <div><strong>Netwerk is stabiel</strong><span>Geen storingen gemeld</span></div>
-                            <span class="status-dot" aria-label="Online"></span>
-                        </div>
-
-                        <div class="network-stats">
-                            <div><span class="stat-icon stat-icon-orange">⌁</span><span>Leidingnet</span><strong>24,6 <small>km</small></strong></div>
-                            <div><span class="stat-icon stat-icon-purple">⌂</span><span>Aangesloten</span><strong>1.284 <small>woningen</small></strong></div>
-                        </div>
-
-                        <div class="activity-row">
-                            <span class="activity-icon" aria-hidden="true">
-                                <svg viewBox="0 0 20 20" fill="none"><path d="M10 3v7l4 2.5M17 10a7 7 0 1 1-2.1-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            </span>
-                            <span><strong>Laatste update</strong><small>Temperatuur bijgewerkt</small></span>
-                            <time>2 min geleden</time>
-                        </div>
-                    </section>
+                    </div>
                 </aside>
 
                 <section class="map-card" aria-label="Kaart van het energienetwerk">
