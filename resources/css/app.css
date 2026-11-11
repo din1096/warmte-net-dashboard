@@ -1399,3 +1399,84 @@
         margin-top: 10px;
     }
 }
+
+
+
+
+
+
+
+
+aside .panel {
+    padding: 20px 24px;
+    margin-bottom: 14px;
+}
+.big {
+    font-size: 34px;
+    font-weight: 700;
+}
+.big small {
+    font-size: 12px;
+    color: #7c8a98;
+}
+.chart {
+    display :flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 120px;
+    margin-top: 20px;
+}
+.chart span {
+    flex: 1;
+    background: #7a3515;
+    border-radius: 1px 1px 0 0;
+}
+.chart span.f {
+    background: repeating-linear-gradient(45deg,#7a3515 0 2px,#1a0d06 2px 4px);
+}
+
+.circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin: 20px auto 0;
+}
+
+.leg div {
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: #aab5c0;
+}
+
+.leg b {
+    display: block;
+    color: #ffffff;
+}
+.dist {
+    margin-top: 20px;
+}
+
+.dist .row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 0;
+    border-top: 1px solid #223344;
+    font-size: 13px;
+}
+
+.dist .row:first-child {
+    border-top: 0;
+}
+
+.dist i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex: none;
+}
+
+.dist .pct {
+    margin-left: auto;
+    font: 600 13px ui-monospace,Menlo,monospace;
+}
