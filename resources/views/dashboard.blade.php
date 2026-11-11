@@ -14,8 +14,7 @@ $now = new DateTime('now', new DateTimeZone('Europe/Amsterdam'));
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Energie dashboard · {{ config('app.name', 'Warmtenet') }}</title>
-    @vite
-    <link rel="stylesheet" href="../css/app.css">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="energy-dashboard" x-data="{ activeLayer: 'warmte', selectedPoint: 'centrale' }">
     <div class="dashboard-shell">

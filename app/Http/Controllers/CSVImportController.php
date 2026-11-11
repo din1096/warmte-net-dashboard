@@ -27,7 +27,6 @@ class CSVImportController extends Controller
             
             while (($row = fgetcsv($handle, 1000, ',')) !== FALSE) {
                 $dataToInsert[] = [
-                    'id'         => $row[0],
                     'name'       => $row[1],
                     'email'      => $row[2],
                     'city'       => $row[3],
