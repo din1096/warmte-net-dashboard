@@ -1,11 +1,17 @@
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f4f6f9;
+.dashboard-shell {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.upload-main {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
+    padding: 24px;
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .upload-container {
@@ -18,7 +24,7 @@ body {
     text-align: center;
 }
 
-h2 {
+.upload-container h2 {
     color: #333;
     font-size: 1.25rem;
     margin-top: 0;
