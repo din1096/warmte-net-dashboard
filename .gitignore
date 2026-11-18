@@ -23,3 +23,6 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 /python/wetransfer_enertrans-csv-files_2026-11-10_1420.zip
+*.csv
+*.CSV
+*.zip
