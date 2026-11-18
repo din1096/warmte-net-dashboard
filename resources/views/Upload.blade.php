@@ -7,7 +7,7 @@
     <title>Upload CSV · {{ config('app.name', 'Warmtenet') }}</title>
     <link rel="stylesheet" href="../css/app.css">
     <link rel="stylesheet" href="../css/upload.css">
-    <!-- @vite(['resources/css/app.css', 'resources/css/Upload.css']) -->
+    @vite(['resources/css/app.css', 'resources/css/Upload.css'])
 </head>
 <body class="energy-dashboard">
     <div class="dashboard-shell">
